@@ -33,6 +33,17 @@ const config: Config = {
         athiti: ['var(--athiti)', 'system-ui'],
         sarun: ['var(--sarun)', 'system-ui'],
       },
+      animation: {
+        shake: 'shaking 60ms infinite',
+      },
+      keyframes: {
+        shaking: {
+          '0%': { top: '0px' },
+          '50%': { transform: 'rotate(1deg)' },
+          '80%': { transform: 'rotate(-1deg)' },
+          '100%': { top: '10px' },
+        },
+      },
     },
   },
   plugins: [require('@butterfail/tailwindcss-inverted-radius')],

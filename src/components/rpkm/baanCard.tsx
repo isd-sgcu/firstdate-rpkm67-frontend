@@ -1,7 +1,8 @@
-import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Icon } from '@iconify/react';
+import { cn } from '@/lib/utils';
+// import { useState } from 'react';
 
 import baan from '@/../public/baanCard/baan.svg';
 import Badge from '@/components/rpkm/sizeBadge';
@@ -14,14 +15,24 @@ interface BaanCardProps {
   isShake: boolean;
 }
 
-export default function page(props: BaanCardProps) {
-  const { image, name, size, number } = props;
+export default function page({
+  image,
+  name,
+  size,
+  number,
+  isShake,
+}: BaanCardProps) {
   return (
-    <div className="w-[100px] h-[140px] bg-white p-1 flex flex-col gap-y-1 shadow-[0_2px_4px_0px_rgba(0,0,0,0.25)]">
+    <div
+      className={cn(
+        'w-[100px] h-[140px] bg-white p-1 flex flex-col gap-y-1 shadow-[0_2px_4px_0px_rgba(0,0,0,0.25)]',
+        { 'animate-shake': isShake }
+      )}
+    >
       <Image
         src={image ? image : baan}
         alt="Baan image"
-        className="w-[90px] h-[90px]"
+        className="w-full"
       ></Image>
       <div className="flex flex-row justify-between items-center">
         <div className="text-project-light-gray font-medium text-xs">
