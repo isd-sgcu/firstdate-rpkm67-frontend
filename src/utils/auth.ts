@@ -18,11 +18,9 @@ export const getNewAccessToken = async (
 
     const { access_token, expires_in, refresh_token } = res.data;
     const tokenStr = JSON.stringify({
-      credential: {
-        accessToken: access_token,
-        expiresIn: getExpireTime(expires_in),
-        refreshToken: refresh_token,
-      },
+      accessToken: access_token,
+      expiresIn: getExpireTime(expires_in),
+      refreshToken: refresh_token,
     });
 
     localStorage.setItem('token', tokenStr);
