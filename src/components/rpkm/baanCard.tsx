@@ -2,9 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Icon } from '@iconify/react';
 import { cn } from '@/lib/utils';
-// import { useState } from 'react';
 
-import baan from '@/../public/baanCard/baan.svg';
+import baanExampleImg from '@/../public/baanCard/baanExample.svg';
 import Badge from '@/components/rpkm/sizeBadge';
 
 interface BaanCardProps {
@@ -30,7 +29,7 @@ export default function page({
       )}
     >
       <Image
-        src={image ? image : baan}
+        src={image ? image : baanExampleImg}
         alt="Baan image"
         className="w-full"
       ></Image>
@@ -51,7 +50,7 @@ export default function page({
             height={12}
           ></Icon>
         </div>
-        <Link href={'/somewhere'}>
+        <Link href={'/toSomewhere'}>
           <Icon icon="mingcute:arrows-right-line"></Icon>
         </Link>
       </div>

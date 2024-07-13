@@ -34,7 +34,7 @@ export default function badge({ baanSize }: BadgeProps) {
     <div className="relative">
       <Icon
         icon="typcn:starburst"
-        className={cn('', background)}
+        className={background}
       ></Icon>
       <span className={cn('absolute font-semibold', textStyle)}>
         {baanSize}
