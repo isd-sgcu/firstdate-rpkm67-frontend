@@ -11,6 +11,8 @@ interface BaanCardProps {
   name: string;
   size: 'S' | 'M' | 'L' | 'XL' | 'XXL';
   number: number; // dunno what to call it
+  description: string; //for modal
+  ig: string; // for modal
   isShake: boolean;
 }
 
@@ -19,6 +21,8 @@ export default function page({
   name,
   size,
   number,
+  // description,
+  // ig,
   isShake,
 }: BaanCardProps) {
   return (
