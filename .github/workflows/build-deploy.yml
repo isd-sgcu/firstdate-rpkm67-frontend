@@ -60,6 +60,11 @@ jobs:
           tags: ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }},${{ env.IMAGE_NAME }}:latest
           cache-from: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache
           cache-to: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache,mode=max
+          build-args: |
+            API_BASE_URL=${{ vars.API_BASE_URL }}
+            FIRST_DATE_DATE=${{ vars.FIRST_DATE_DATE }}
+            RUP_PEUN_DATE=${{ vars.RUP_PEUN_DATE }}
+            BASE_DOMAIN_IMAGES=${{ vars.BASE_DOMAIN_IMAGES }}
 
   cd:
     name: Continuous Deployment

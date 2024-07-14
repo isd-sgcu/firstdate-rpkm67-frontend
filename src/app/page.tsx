@@ -1,15 +1,15 @@
 'use client';
 
-import Border from '@/components/Border';
-import Welcome from '@/components/Welcome';
 import Image from 'next/image';
 import SGCULOGO from '@public/landing/SGCU-logo.svg';
 import { useRouter, useSearchParams } from 'next/navigation';
-import Spinner from '@/components/Spinner';
 import { Suspense, useCallback, useEffect, useRef } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { exchangeGoogleCodeForToken, getGoogleUrl } from '@/utils/auth';
 import { isUserRegistered } from '@/utils/user';
+import Border from '@/components/firstdate/Border';
+import Spinner from '@/components/firstdate/Spinner';
+import Welcome from '@/components/firstdate/Welcome';
 
 export default function page() {
   return (
