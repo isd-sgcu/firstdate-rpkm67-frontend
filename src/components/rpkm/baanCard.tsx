@@ -16,7 +16,7 @@ interface BaanCardProps {
   isShake: boolean;
 }
 
-export default function page({
+export default function BaanCard({
   image,
   name,
   size,
