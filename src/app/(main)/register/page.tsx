@@ -184,8 +184,7 @@ export default function Register() {
                 <option value="นาย">นาย</option>
                 <option value="นาง">นาง</option>
                 <option value="นางสาว">นางสาว</option>
-                <option value="เด็กชาย">เด็กชาย</option>
-                <option value="เด็กหญิง">เด็กหญิง</option>
+                <option value="อื่นๆ">อื่นๆ</option>
               </StyledSelect>
             </label>
             <label>

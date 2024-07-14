@@ -109,7 +109,6 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({
 
     setisReady(true);
   }, [router, path]);
-
   return (
     <AuthContext.Provider value={{ user, resetContext, logout }}>
       {(user || path == '/') && isReady ? (

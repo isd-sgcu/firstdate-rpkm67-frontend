@@ -62,7 +62,7 @@ function Login() {
     let newPath;
 
     if (isStaff) {
-      newPath = isRegistered ? '/staff/home' : '/staff/register';
+      newPath = isRegistered ? '/firstdate/staff/home' : '/staff/register';
     } else {
       newPath = isRegistered ? '/home' : '/register';
     }
