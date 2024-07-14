@@ -41,6 +41,9 @@ const StampPage = () => {
   const [currentActivityId, setCurrentActivityId] = useState<string | null>(
     null
   );
+  const [currentActivityName, setCurrentActivityName] = useState<string | null>(
+    null
+  );
 
   const { resetContext } = useAuth();
 
@@ -68,8 +71,9 @@ const StampPage = () => {
     fetchStamps();
   }, []);
 
-  const handleStampClick = (activityId: IActivity) => {
+  const handleStampClick = (activityId: IActivity, activityName: string) => {
     setCurrentActivityId(activityId);
+    setCurrentActivityName(activityName);
 
     if (
       activityId === IActivity.CLUB_OUTSIDE ||
@@ -114,6 +118,7 @@ const StampPage = () => {
     setFavoriteClubModalOpen(false);
     setOpinionModalOpen(false);
     setCurrentActivityId(null);
+    setCurrentActivityName(null);
   };
 
   return (
@@ -143,7 +148,10 @@ const StampPage = () => {
               collected={stamps?.stamp[0] === '1'}
               onClick={() =>
                 stamps?.stamp[0] === '0' &&
-                handleStampClick(IActivity.WORKSHOP_X_WONDER)
+                handleStampClick(
+                  IActivity.WORKSHOP_X_WONDER,
+                  'Workshop x Wonder'
+                )
               }
             />
             <StampCheckBox
@@ -152,7 +160,10 @@ const StampPage = () => {
               collected={stamps?.stamp[1] === '1'}
               onClick={() =>
                 stamps?.stamp[1] === '0' &&
-                handleStampClick(IActivity.GIVING_AND_TAKING)
+                handleStampClick(
+                  IActivity.GIVING_AND_TAKING,
+                  'Giving and Taking'
+                )
               }
             />
             <StampCheckBox
@@ -161,7 +172,7 @@ const StampPage = () => {
               collected={stamps?.stamp[2] === '1'}
               onClick={() =>
                 stamps?.stamp[2] === '0' &&
-                handleStampClick(IActivity.THE_JEWEL)
+                handleStampClick(IActivity.THE_JEWEL, 'The Jewel')
               }
             />
           </StampContainer>
@@ -172,7 +183,10 @@ const StampPage = () => {
               collected={stamps?.stamp[3] === '1'}
               onClick={() =>
                 stamps?.stamp[3] === '0' &&
-                handleStampClick(IActivity.YOUR_PLEASING_SCENT)
+                handleStampClick(
+                  IActivity.YOUR_PLEASING_SCENT,
+                  'Your Pleasing Scent'
+                )
               }
             />
             <StampCheckBox
@@ -181,7 +195,7 @@ const StampPage = () => {
               collected={stamps?.stamp[4] === '1'}
               onClick={() =>
                 stamps?.stamp[4] === '0' &&
-                handleStampClick(IActivity.OBJET_D_ART)
+                handleStampClick(IActivity.OBJET_D_ART, "Object d'Art")
               }
             />
           </StampContainer>
@@ -193,7 +207,7 @@ const StampPage = () => {
               collected={stamps?.stamp[5] === '1'}
               onClick={() =>
                 stamps?.stamp[5] === '0' &&
-                handleStampClick(IActivity.LANDMARK_1)
+                handleStampClick(IActivity.LANDMARK_1, 'Landmark 1')
               }
             />
             <StampCheckBox
@@ -202,7 +216,7 @@ const StampPage = () => {
               collected={stamps?.stamp[6] === '1'}
               onClick={() =>
                 stamps?.stamp[6] === '0' &&
-                handleStampClick(IActivity.LANDMARK_2)
+                handleStampClick(IActivity.LANDMARK_2, 'Landmark 2')
               }
             />
             <StampCheckBox
@@ -211,7 +225,7 @@ const StampPage = () => {
               collected={stamps?.stamp[7] === '1'}
               onClick={() =>
                 stamps?.stamp[7] === '0' &&
-                handleStampClick(IActivity.LANDMARK_3)
+                handleStampClick(IActivity.LANDMARK_3, 'Landmark 3')
               }
             />
             <StampCheckBox
@@ -220,7 +234,7 @@ const StampPage = () => {
               collected={stamps?.stamp[8] === '1'}
               onClick={() =>
                 stamps?.stamp[8] === '0' &&
-                handleStampClick(IActivity.LANDMARK_4)
+                handleStampClick(IActivity.LANDMARK_4, 'Landmark 4')
               }
             />
           </StampContainer>
@@ -232,7 +246,7 @@ const StampPage = () => {
               collected={stamps?.stamp[9] === '1'}
               onClick={() =>
                 stamps?.stamp[9] === '0' &&
-                handleStampClick(IActivity.CLUB_OUTSIDE)
+                handleStampClick(IActivity.CLUB_OUTSIDE, 'ภายนอกอบจ.')
               }
             />
             <StampCheckBox
@@ -241,7 +255,7 @@ const StampPage = () => {
               collected={stamps?.stamp[10] === '1'}
               onClick={() =>
                 stamps?.stamp[10] === '0' &&
-                handleStampClick(IActivity.CLUB_INSIDE)
+                handleStampClick(IActivity.CLUB_INSIDE, 'ภายใต้อบจ.')
               }
             />
           </StampContainer>
@@ -249,9 +263,10 @@ const StampPage = () => {
         <EndJourneyButton />
       </Border>
       <MenuList />
-      {isOTPModalOpen && currentActivityId && (
+      {isOTPModalOpen && currentActivityId && currentActivityName && (
         <OTPModal
           activityId={currentActivityId}
+          activityName={currentActivityName}
           onClose={handleModalClose}
           onSubmit={handleCreateStamp}
         />

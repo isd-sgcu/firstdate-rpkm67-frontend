@@ -21,18 +21,7 @@ import { UserDTO } from '@/dtos/userDTO';
 
 type RegisterUser = Pick<
   UserDTO,
-  | 'title'
-  | 'firstname'
-  | 'lastname'
-  | 'nickname'
-  | 'faculty'
-  | 'year'
-  | 'tel'
-  | 'parent_tel'
-  | 'parent'
-  | 'food_allergy'
-  | 'drug_allergy'
-  | 'illness'
+  'title' | 'firstname' | 'lastname' | 'nickname' | 'faculty' | 'year' | 'tel'
 >;
 
 export default function Edit() {
@@ -48,11 +37,6 @@ export default function Edit() {
     faculty: user?.faculty || '',
     year: user?.year || 0,
     tel: user?.tel || '',
-    parent_tel: user?.parentTel || '',
-    parent: user?.parent || '',
-    food_allergy: user?.foodAllergy || '',
-    drug_allergy: user?.drugAllergy || '',
-    illness: user?.illness || '',
   });
   const [errors, setErrors] = useState<string[]>([]);
 
@@ -75,8 +59,6 @@ export default function Edit() {
     if (!formData.faculty) formErrors.push('faculty');
     if (!formData.year) formErrors.push('year');
     if (!formData.tel) formErrors.push('tel');
-    if (!formData.parent_tel) formErrors.push('parent_tel');
-    if (!formData.parent) formErrors.push('parent');
     setErrors(formErrors);
 
     const isError = formErrors.length !== 0;
@@ -260,73 +242,6 @@ export default function Edit() {
             </label>
           </div>
 
-          <div className="space-y-2">
-            <h3 className="text-xl font-semibold text-center mb-2">
-              ข้อมูลผู้ปกครอง
-            </h3>
-            <label>
-              <span>เบอร์โทรศัพท์ของผู้ปกครอง</span>
-              <div className="flex pb-2">
-                <StyledInput
-                  type="text"
-                  name="parent_tel"
-                  placeholder="เบอร์โทรศัพท์"
-                  value={formData.parent_tel}
-                  onChange={handleInputChange}
-                  error={errors.includes('parent_tel')}
-                />
-              </div>
-            </label>
-            <label>
-              <span>ความสัมพันธ์</span>
-              <StyledSelect
-                name="parent"
-                value={formData.parent}
-                onChange={handleInputChange}
-                error={errors.includes('parent')}
-              >
-                <option
-                  disabled
-                  value=""
-                >
-                  ความสัมพันธ์
-                </option>
-                <option value="บิดา">บิดา</option>
-                <option value="มารดา">มารดา</option>
-                <option value="อื่นๆ">อื่นๆ</option>
-              </StyledSelect>
-            </label>
-          </div>
-
-          <div className="space-y-2">
-            <h3 className="text-xl font-semibold text-center">
-              ข้อมูลด้านสุขภาพ
-            </h3>
-            <StyledInput
-              type="text"
-              name="food_allergy"
-              placeholder="อาหารที่แพ้"
-              value={formData.food_allergy}
-              onChange={handleInputChange}
-              error={errors.includes('food_allergy')}
-            />
-            <StyledInput
-              type="text"
-              name="drug_allergy"
-              placeholder="ยาที่แพ้"
-              value={formData.drug_allergy}
-              onChange={handleInputChange}
-              error={errors.includes('drug_allergy')}
-            />
-            <StyledInput
-              type="text"
-              name="illness"
-              placeholder="โรคประจำตัว"
-              value={formData.illness}
-              onChange={handleInputChange}
-              error={errors.includes('illness')}
-            />
-          </div>
           <div className="flex flex-col items-center gap-4 mt-6">
             <Image
               src={CurvedLineIcon}
@@ -341,7 +256,7 @@ export default function Edit() {
             </Button>
             <Button
               variant="white"
-              onClick={() => router.push('/home')}
+              onClick={() => router.push('/staff/home')}
             >
               ยกเลิก
             </Button>

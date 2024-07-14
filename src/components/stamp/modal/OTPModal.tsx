@@ -7,12 +7,14 @@ import Image from 'next/image';
 
 interface OTPModalProps {
   activityId: string;
+  activityName: string;
   onClose: () => void;
   onSubmit: (activityId: string, pin_code: string) => void;
 }
 
 const OTPModal: React.FC<OTPModalProps> = ({
   activityId,
+  activityName,
   onClose,
   onSubmit,
 }) => {
@@ -55,14 +57,11 @@ const OTPModal: React.FC<OTPModalProps> = ({
           />
         </div>
         <div className="flex flex-col items-center justify-center space-y-10">
-          <div className="flex flex-col items-center justify-center">
-            <h1 className="text-4xl font-semibold mb-2 text-center">
-              กรุณากรอก OTP
+          <div className="flex flex-col items-center justify-center space-y-8">
+            <h1 className="text-4xl font-semibold text-center">
+              {activityName}
             </h1>
-            <p className="text-xl font-medium mb-4 text-center">
-              เพื่อยืนยันการทำกิจกรรม
-            </p>
-            <div className="flex space-x-2 mb-4">
+            <div className="flex space-x-2">
               {Array(6)
                 .fill(0)
                 .map((_, index) => (
@@ -81,8 +80,12 @@ const OTPModal: React.FC<OTPModalProps> = ({
                   />
                 ))}
             </div>
-            <h3 className="font-semibold">สถานที่รับ OTP</h3>
-            <p className="font-normal underline">สถานที่รับ OTP</p>
+            <div className="flex items-center justify-center flex-col">
+              <h3 className="font-normal text-xl">
+                กรุณากรอก OTP เพื่อทำการยืนยันกิจกรรม
+              </h3>
+              <p className="font-normal underline">สถานที่รับ OTP</p>
+            </div>
           </div>
           <button
             onClick={onClose}

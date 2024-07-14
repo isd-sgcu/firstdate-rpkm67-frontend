@@ -1,0 +1,12 @@
+version: '3.9'
+services:
+  frontend:
+    container_name: rpkm67-frontend
+    build:
+      context: .
+    environment:
+      API_BASE_URL: https://rpkm67-dev.sgcu.in.th/api/v1
+      FIRST_DATE_DATE: '2024-07-21'
+      RUP_PEUN_DATE: '2024-07-20'
+    ports:
+      - 80:3000

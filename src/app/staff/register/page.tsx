@@ -4,7 +4,6 @@ import { useState, ChangeEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import Border from '@/components/Border';
 import StarIcon from '@public/star.svg';
-import CurvedLineIcon from '@public/curved-line.svg';
 import Image from 'next/image';
 import { useAuth } from '@/context/AuthContext';
 import { getAccessToken } from '@/utils/auth';
@@ -23,18 +22,7 @@ import { UserDTO } from '@/dtos/userDTO';
 
 type RegisterUser = Pick<
   UserDTO,
-  | 'title'
-  | 'firstname'
-  | 'lastname'
-  | 'nickname'
-  | 'faculty'
-  | 'year'
-  | 'tel'
-  | 'parent_tel'
-  | 'parent'
-  | 'food_allergy'
-  | 'drug_allergy'
-  | 'illness'
+  'title' | 'firstname' | 'lastname' | 'nickname' | 'faculty' | 'year' | 'tel'
 >;
 
 export default function Register() {
@@ -47,11 +35,6 @@ export default function Register() {
     faculty: '',
     year: 0,
     tel: '',
-    parent_tel: '',
-    parent: '',
-    food_allergy: '',
-    drug_allergy: '',
-    illness: '',
   });
   const [isPdpaOpen, setIsPdpaOpen] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
@@ -83,14 +66,7 @@ export default function Register() {
         if (!formData.nickname) stepErrors.push('nickname');
         if (!formData.faculty) stepErrors.push('faculty');
         if (!formData.year) stepErrors.push('year');
-        break;
-      case 2:
         if (!formData.tel) stepErrors.push('tel');
-        if (!formData.parent_tel) stepErrors.push('parent_tel');
-        if (!formData.parent) stepErrors.push('parent');
-        break;
-      case 3:
-        // Note: not validate food, drug, and illness
         break;
     }
 
@@ -101,12 +77,6 @@ export default function Register() {
     }
 
     return !isError;
-  };
-
-  const handleNextStep = () => {
-    if (validateStep()) {
-      setCurrentStep((currentStep) => currentStep + 1);
-    }
   };
 
   const handlePrevStep = () => {
@@ -249,6 +219,7 @@ export default function Register() {
                   ))}
                 </StyledSelect>
               </label>
+
               <label className="w-2/5 flex flex-col">
                 <span>ชั้นปี</span>
                 <StyledSelect
@@ -268,26 +239,7 @@ export default function Register() {
                 </StyledSelect>
               </label>
             </div>
-            <div className="flex flex-col items-center gap-4">
-              <Button
-                variant="pink"
-                onClick={handleNextStep}
-              >
-                ต่อไป
-              </Button>
-              <Button
-                variant="white"
-                onClick={handlePrevStep}
-              >
-                ย้อนกลับ
-              </Button>
-            </div>
-          </div>
-        );
-      case 2:
-        return (
-          <div className="flex flex-col space-y-4 items-center">
-            <h2 className="text-2xl font-bold">ข้อมูลการติดต่อ</h2>
+
             <label className="flex flex-col">
               <span>เบอร์โทรศัพท์</span>
               <StyledInput
@@ -299,97 +251,8 @@ export default function Register() {
                 error={errors.includes('tel')}
               />
             </label>
-            <Image
-              src={CurvedLineIcon}
-              alt="curved-line"
-              className="mb-4"
-            />
-            <h2 className="text-2xl font-bold">ข้อมูลผู้ปกครอง</h2>
-            <label className="flex flex-col">
-              <span>เบอร์โทรศัพท์ของผู้ปกครอง</span>
-              <StyledInput
-                type="text"
-                name="parent_tel"
-                placeholder="เบอร์โทรศัพท์"
-                value={formData.parent_tel}
-                onChange={handleInputChange}
-                error={errors.includes('parent_tel')}
-              />
-            </label>
-            <label className="flex flex-col w-full pb-10">
-              <span>ความสัมพันธ์</span>
-              <StyledSelect
-                name="parent"
-                value={formData.parent}
-                onChange={handleInputChange}
-                error={errors.includes('parent')}
-              >
-                <option
-                  disabled
-                  value=""
-                >
-                  ความสัมพันธ์
-                </option>
-                <option value="บิดา">บิดา</option>
-                <option value="มารดา">มารดา</option>
-                <option value="อื่นๆ">อื่นๆ</option>
-              </StyledSelect>
-            </label>
-            <Button
-              variant="pink"
-              onClick={handleNextStep}
-            >
-              ต่อไป
-            </Button>
-            <Button
-              variant="white"
-              onClick={handlePrevStep}
-            >
-              ย้อนกลับ
-            </Button>
-          </div>
-        );
-      case 3:
-        return (
-          <div className="flex flex-col space-y-4">
-            <h2 className="text-2xl font-bold text-center">ข้อมูลด้านสุขภาพ</h2>
-            <label className="flex flex-col">
-              <span>อาหารที่แพ้</span>
-              <StyledInput
-                type="text"
-                name="food_allergy"
-                placeholder="อาหารที่แพ้"
-                value={formData.food_allergy}
-                onChange={handleInputChange}
-                error={errors.includes('foodAllergy')}
-              />
-            </label>
 
-            <label className="flex flex-col">
-              <span>ยาที่เเพ้</span>
-              <StyledInput
-                type="text"
-                name="drug_allergy"
-                placeholder="ยาที่แพ้"
-                value={formData.drug_allergy}
-                onChange={handleInputChange}
-                error={errors.includes('drugAllergy')}
-              />
-            </label>
-
-            <label className="flex flex-col">
-              <span>โรคประจำตัว</span>
-              <StyledInput
-                type="text"
-                name="illness"
-                placeholder="โรคประจำตัว"
-                value={formData.illness}
-                onChange={handleInputChange}
-                error={errors.includes('illness')}
-              />
-            </label>
-
-            <div className="flex flex-col items-center gap-4 pt-12">
+            <div className="flex flex-col items-center gap-4">
               <Button
                 variant="fuchsia"
                 onClick={handleSubmit}

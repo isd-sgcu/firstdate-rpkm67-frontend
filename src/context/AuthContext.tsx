@@ -16,7 +16,7 @@ import React, {
 
 interface IAuthContext {
   user: User | null;
-  resetContext: () => void;
+  resetContext: () => Promise<void>;
   logout: () => void;
 }
 

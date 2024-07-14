@@ -52,7 +52,7 @@ export default function Pdpa(props: PdpaProps) {
 
   return (
     <div className={containerClassName}>
-      <div className="relative flex flex-col justify-center items-center bg-white m-5 p-6 rounded-[20px]">
+      <div className="relative flex flex-col justify-center items-center w-[90%] h-[90%] overflow-y-scroll overflow-x-hidden bg-white p-6 rounded-[20px]">
         <div className="absolute right-4 top-4">
           <button onClick={handleOnClose}>
             <svg
@@ -68,8 +68,8 @@ export default function Pdpa(props: PdpaProps) {
             </svg>
           </button>
         </div>
-        <h1 className="mt-2 font-semibold text-5xl">PDPA</h1>
-        <div className="m-8 bg-black h-[1px] w-[95%]"></div>
+        <h1 className="mt-[400px] font-semibold text-5xl">PDPA</h1>
+        <div className="my-8 border border-black h-[1px] w-[95%]"></div>
         <h2 className="text-center text-xl font-semibold">
           {titles.map((title, index) => (
             <p key={index}>{title}</p>
@@ -117,7 +117,7 @@ export default function Pdpa(props: PdpaProps) {
           </label>
         </div>
         <button
-          className={`mt-3 w-64 h-12 font-medium text-white text-xl rounded-lg bg-project-fuchsia
+          className={`mt-4 px-[10%] py-2 h-12 font-medium text-white text-xl rounded-lg bg-project-fuchsia
                 ${isChecked ? 'opacity-100' : 'opacity-50'}`}
           disabled={!isChecked}
           onClick={handleOnSuccess}

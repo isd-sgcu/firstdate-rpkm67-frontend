@@ -2,7 +2,7 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 
 interface ButtonProps {
-  variant: 'pink' | 'white';
+  variant: 'pink' | 'white' | 'fuchsia';
   children: React.ReactNode;
   onClick?: () => void;
   className?: string;
@@ -19,6 +19,7 @@ const Button: React.FC<ButtonProps> = ({
   const variantStyles = {
     pink: 'bg-project-pink text-black',
     white: 'bg-white text-project-fuchsia border-[1px] border-project-fuchsia',
+    fuchsia: 'bg-project-fuchsia text-white',
   };
 
   return (

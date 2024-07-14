@@ -48,20 +48,18 @@ export default function Home() {
           <center>
             <div className="flex flex-col items-center text-center justify-between w-[15.81vh] h-[29.2vh] self-center">
               <div
-                className="w-full h-[75%] rounded-t-full border-white shadow-[0px_0px_4px_.4px_#00000036]"
+                className="relative w-full h-[75%] rounded-t-full border-white shadow-[0px_0px_4px_.4px_#00000036]"
                 style={{ borderWidth: '0.66vh', borderStyle: 'solid' }}
               >
                 <Image
-                  src={user?.photoUrl ? user?.photoUrl : placeholder.src}
+                  src={user?.photoUrl || placeholder.src}
                   alt="profile picture"
-                  width={10}
-                  height={10}
-                  style={{ width: '100%', height: '100%' }}
-                  className="rounded-t-full"
+                  fill
+                  className="rounded-t-full object-cover object-center"
                 />
               </div>
               <h1 className="text-[2.63vh] font-semibold text-center text-black">
-                {user?.firstname} {user?.firstname} #{user?.year}
+                {user?.firstname} {user?.lastname} #{user?.year}
                 <br />
                 {user?.faculty}
               </h1>
